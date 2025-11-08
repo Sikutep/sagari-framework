@@ -9,7 +9,6 @@ use App\Middleware\RateLimitMiddleware;
 $app = Application::getInstance();
 $router = $app->router();
 
-// API routes with CORS and rate limiting
 $router->group(['prefix' => 'api/v1', 'middleware' => [CorsMiddleware::class, RateLimitMiddleware::class]], function($router) {
     
     // Public routes
