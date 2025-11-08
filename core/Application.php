@@ -36,12 +36,10 @@ class Application
             $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             
             foreach ($lines as $line) {
-                // Skip comments
                 if (strpos(trim($line), '#') === 0) {
                     continue;
                 }
                 
-                // Parse key=value
                 if (strpos($line, '=') !== false) {
                     list($name, $value) = explode('=', $line, 2);
                     $name = trim($name);
@@ -74,22 +72,22 @@ class Application
     
     protected function registerServices()
     {
-        // Register config
+
         $this->container->singleton('config', function() {
             return $this->config;
         });
         
-        // Register database
+
         $this->container->singleton('db', function() {
             return new Database($this->config['database']);
         });
         
-        // Register request
+
         $this->container->singleton('request', function() {
             return new Request();
         });
         
-        // Register response
+
         $this->container->singleton('response', function() {
             return new Response();
         });
@@ -97,17 +95,17 @@ class Application
     
     public function boot()
     {
-        // Set error reporting
+
         error_reporting(E_ALL);
         ini_set('display_errors', $this->config['app']['debug'] ? '1' : '0');
         
-        // Set timezone
+
         date_default_timezone_set($this->config['app']['timezone'] ?? 'UTC');
         
-        // Set default charset
+
         ini_set('default_charset', 'UTF-8');
         
-        // Load routes
+
         $this->loadRoutes();
     }
     
@@ -122,8 +120,8 @@ class Application
         }
     }
 
-    // Debug: Tampilkan jumlah route yang dimuat
-    $router = $this->router; // Ambil router instance
+    
+    $router = $this->router; 
     
 }
     
@@ -143,8 +141,7 @@ class Application
     
    protected function handleException(\Exception $e)
 {
-    $statusCode = $e instanceof ValidationException ? 422 : 500; // <-- Ditentukan di sini
-    
+    $statusCode = $e instanceof ValidationException ? 422 : 500; 
     $response = new Response();
     $response->setStatusCode($statusCode);
     
