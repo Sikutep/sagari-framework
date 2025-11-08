@@ -19,7 +19,7 @@ class Router
         return $this->addRoute('GET', $uri, $action);
     }
 
-    // Tambahkan di akhir class Router, sebelum kurawal penutup
+  
 public function getRoutesForDebug()
 {
     return $this->routes;
