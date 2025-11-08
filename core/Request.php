@@ -26,27 +26,25 @@ class Request
     public function uri()
 {
     $requestUri = $_SERVER['REQUEST_URI'] ?? '';
-    $scriptName = $_SERVER['SCRIPT_NAME']; // Ini adalah /backend-framework/public/index.php
+    $scriptName = $_SERVER['SCRIPT_NAME']; 
 
-    // Pisahkan query string jika ada
+
     $pos = strpos($requestUri, '?');
     if ($pos !== false) {
         $requestUri = substr($requestUri, 0, $pos);
     }
 
-    // Hitung panjang script path
-    $basePath = dirname($scriptName); // Ini akan menghasilkan /backend-framework/public
-    // dirname('/backend-framework/public/index.php') -> /backend-framework/public
 
-    // Hapus basePath dari requestUri untuk mendapatkan URI relatif
+    $basePath = dirname($scriptName); 
+
+
     if (strpos($requestUri, $basePath) === 0) {
         $uri = substr($requestUri, strlen($basePath));
     } else {
-        // Jika basePath tidak cocok, kembalikan requestUri asli
+
         $uri = $requestUri;
     }
 
-    // Hapus leading slash
     $uri = ltrim($uri, '/');
 
     return $uri;
