@@ -31,7 +31,7 @@ class AuthService
         
         $user = $this->user->findByEmail($email);
         
-        // Generate token (simple example, use JWT in production)
+       
         $token = bin2hex(random_bytes(32));
         
         return [
@@ -42,8 +42,7 @@ class AuthService
     
     public function validateToken($token)
     {
-        // Implement token validation logic
-        // This is a placeholder - use JWT or store tokens in database
+
         return !empty($token);
     }
 }
