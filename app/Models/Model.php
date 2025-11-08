@@ -7,9 +7,9 @@ use Core\Application;
 abstract class Model
 {
     protected $db;
-    protected $table; // Harus diisi oleh kelas turunan
-    protected $primaryKey = 'id'; // Default primary key
-    protected $fillable = []; // Kolom yang bisa diisi massal
+    protected $table; 
+    protected $primaryKey = 'id';
+    protected $fillable = []; 
 
     public function __construct()
     {
